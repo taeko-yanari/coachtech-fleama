@@ -1,7 +1,7 @@
 services:
   nginx:
     image: nginx:1.21.1
-    container_name: nginx
+    container_name: coachtech-fleama-nginx
     ports:
       - '80:80'
     volumes:
@@ -16,7 +16,7 @@ services:
 
   php:
     build: ./docker/php
-    container_name: php
+    container_name: coachtech-fleama-php
     volumes:
       - ./src:/var/www/
     restart: unless-stopped
@@ -25,7 +25,7 @@ services:
 
   mysql:
     image: mysql:8.0.26
-    container_name: mysql
+    container_name: coachtech-fleama-mysql
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -59,7 +59,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin
+    container_name: coachtech-fleama-phpmyadmin
     environment:
       PMA_HOST: mysql
       PMA_ARBITRARY: 1

@@ -274,8 +274,8 @@
 ### 1. リポジトリ取得
 
 ```bash
-git clone git@github.com:taeko-yanari/coachtech-fleamarket.git
-cd coachtech-fleamarket
+git clone git@github.com:taeko-yanari/coachtech-fleama.git
+cd coachtech-fleama
 docker compose up -d --build
 ```
 

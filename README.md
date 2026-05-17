@@ -299,7 +299,7 @@ cp src/.env.example src/.env
 
 ```env
 DB_CONNECTION=mysql
-DB_HOST=mysql          # docker-compose.yml のサービス名
+DB_HOST=mysql
 DB_PORT=3306
 DB_DATABASE=laravel_db
 DB_USERNAME=laravel_user
@@ -309,7 +309,6 @@ DB_PASSWORD=laravel_pass
 ### 5. Docker コンテナ起動
 
 ```bash
-rm -rf docker/mysql/data
 docker compose up -d --build
 ```
 

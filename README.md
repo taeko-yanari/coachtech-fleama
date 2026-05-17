@@ -276,31 +276,44 @@
 ```bash
 git clone git@github.com:taeko-yanari/coachtech-fleama.git
 cd coachtech-fleama
-docker compose up -d --build
 ```
 
-### 2. 環境変数の設定
+### 2. Docker 用 `.env` を作成
 
-`.env.example` をコピーして `.env` を作成し、DB の接続情報を設定します。
+Docker の MySQL が起動するために、プロジェクト直下に .env が必要です。
+
+```env
+MYSQL_ROOT_PASSWORD=root
+MYSQL_DATABASE=laravel_db
+MYSQL_USER=laravel_user
+MYSQL_PASSWORD=laravel_pass
+```
+
+### 2. Laravel 用 `.env` を作成
 
 ```bash
 cp src/.env.example src/.env
 ```
 
-`.env` を開き、以下の項目を `docker-compose.yml` の設定に合わせて編集してください。
+`.env` を開き、以下を Docker の設定に合わせて編集：
 
 ```env
 DB_CONNECTION=mysql
 DB_HOST=mysql          # docker-compose.yml のサービス名
 DB_PORT=3306
-DB_DATABASE=laravel_db # docker-compose.yml の MYSQL_DATABASE と一致させる
-DB_USERNAME=laravel_user  # docker-compose.yml の MYSQL_USER と一致させる
-DB_PASSWORD=laravel_pass  # docker-compose.yml の MYSQL_PASSWORD と一致させる
+DB_DATABASE=laravel_db
+DB_USERNAME=laravel_user
+DB_PASSWORD=laravel_pass
 ```
 
-> ⚠️ `DB_HOST` には `127.0.0.1` ではなく Docker のサービス名（例：`mysql`）を指定してください。
+### 5. Docker コンテナ起動
 
-### 3. Laravel セットアップ
+```bash
+rm -rf docker/mysql/data
+docker compose up -d --build
+```
+
+### 5. Laravel セットアップ
 
 ```bash
 docker compose exec php bash
@@ -340,6 +353,9 @@ php artisan storage:link
 
 - アプリ：http://localhost/
 - phpMyAdmin：http://localhost:8080/
+  - サーバー：mysql
+  - ユーザー：laravel_user
+  - パスワード：laravel_pass
 
 ---
 

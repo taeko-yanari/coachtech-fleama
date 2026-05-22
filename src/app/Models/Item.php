@@ -21,12 +21,17 @@ class Item extends Model
 
     public function categories()
     {
-        return $this->belongsToMany(Category::class);
+        return $this->belongsToMany(Category::class,'item_categories');
     }
 
     public function images()
     {
         return $this->hasMany(ItemImage::class);
+    }
+
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
     }
 
     public function comments()

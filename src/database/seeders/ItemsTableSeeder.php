@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\Item;
+use App\Models\User;
+
 
 class ItemsTableSeeder extends Seeder
 {
@@ -25,7 +27,10 @@ class ItemsTableSeeder extends Seeder
                 'brand_name'  => 'Rolax',
                 'description' => 'スタイリッシュなデザインのメンズ腕時計',
                 'condition' => '良好',
-                'status' => 'selling'
+                'status' => 'selling',
+                'categories' => ['メンズ','アクセサリー'],
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'user_id' => $userIds->random(),
@@ -34,7 +39,10 @@ class ItemsTableSeeder extends Seeder
                 'brand_name'  => '西芝',
                 'description' => '高速で信頼性の高いハードディスク',
                 'condition' => '目立った傷や汚れなし',
-                'status' => 'selling'
+                'status' => 'sold',
+                'categories' => ['家電'],
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'user_id' => $userIds->random(),
@@ -43,7 +51,10 @@ class ItemsTableSeeder extends Seeder
                 'brand_name'  => null,
                 'description' => '新鮮な玉ねぎ3束のセット',
                 'condition' => 'やや傷や汚れあり',
-                'status' => 'selling'
+                'status' => 'selling',
+                'categories' => ['インテリア','ハンドメイド'],
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'user_id' => $userIds->random(),
@@ -52,7 +63,10 @@ class ItemsTableSeeder extends Seeder
                 'brand_name'  => null,
                 'description' => 'クラシックなデザインの革靴',
                 'condition' => '状態が悪い',
-                'status' => 'selling'
+                'status' => 'sold',
+                'categories' => ['ファッション','メンズ'],
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'user_id' => $userIds->random(),
@@ -61,7 +75,10 @@ class ItemsTableSeeder extends Seeder
                 'brand_name'  => null,
                 'description' => '高性能なノートパソコン',
                 'condition' => '良好',
-                'status' => 'selling'
+                'status' => 'selling',
+                'categories' => ['家電'],
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'user_id' => $userIds->random(),
@@ -70,7 +87,10 @@ class ItemsTableSeeder extends Seeder
                 'brand_name'  => null,
                 'description' => '高音質のレコーディング用マイク',
                 'condition' => '目立った傷や汚れなし',
-                'status' => 'selling'
+                'status' => 'sold',
+                'categories' => ['家電'],
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'user_id' => $userIds->random(),
@@ -79,7 +99,10 @@ class ItemsTableSeeder extends Seeder
                 'brand_name'  => null,
                 'description' => 'おしゃれなショルダーバッグ',
                 'condition' => 'やや傷や汚れあり',
-                'status' => 'selling'
+                'status' => 'selling',
+                'categories' => ['ファッション','レディース'],
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'user_id' => $userIds->random(),
@@ -88,7 +111,10 @@ class ItemsTableSeeder extends Seeder
                 'brand_name'  => null,
                 'description' => '使いやすいタンブラー',
                 'condition' => '状態が悪い',
-                'status' => 'selling'
+                'status' => 'selling',
+                'categories' => ['メンズ','アクセサリー'],
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'user_id' => $userIds->random(),
@@ -97,7 +123,10 @@ class ItemsTableSeeder extends Seeder
                 'brand_name'  => 'Starbacks',
                 'description' => '手動のコーヒーミル',
                 'condition' => '良好',
-                'status' => 'selling'
+                'status' => 'selling',
+                'categories' => ['キッチン'],
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'user_id' => $userIds->random(),
@@ -106,10 +135,43 @@ class ItemsTableSeeder extends Seeder
                 'brand_name'  => null,
                 'description' => '便利なメイクアップセット',
                 'condition' => '目立った傷や汚れなし',
-                'status' => 'selling'
+                'status' => 'selling',
+                'categories' => ['ファッション','レディース'],
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
         ];
 
-        DB::table('items')->insert($items);
+        $categoryMap = [
+            'ファッション' => 1,
+            '家電' => 2,
+            'インテリア' => 3,
+            'レディース' => 4,
+            'メンズ' => 5,
+            'コスメ' => 6,
+            '本' => 7,
+            'ゲーム' => 8,
+            'スポーツ' => 9,
+            'キッチン' => 10,
+            'ハンドメイド' => 11,
+            'アクセサリー' => 12,
+            'おもちゃ' => 13,
+            'ベビー・キッズ' => 14,
+        ];
+
+        foreach ($items as $data) {
+            $item = Item::create([
+                'user_id' => $data['user_id'],
+                'name' => $data['name'],
+                'price' => $data['price'],
+                'brand_name' => $data['brand_name'],
+                'description' => $data['description'],
+                'condition' => $data['condition'],
+                'status' => $data['status'],
+            ]);
+
+            $categoryId = array_map(fn($c) => $categoryMap[$c], $data['categories']);
+            $item->categories()->attach($categoryId);
+        }
     }
 }

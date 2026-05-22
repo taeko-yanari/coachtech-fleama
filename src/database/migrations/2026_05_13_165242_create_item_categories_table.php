@@ -31,6 +31,7 @@ class CreateItemCategoriesTable extends Migration
 
             $table->timestamps();
         });
+        
     }
 
     /**

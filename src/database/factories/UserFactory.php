@@ -29,7 +29,7 @@ class UserFactory extends Factory
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
-            'profile_image_path' => 'https://picsum.photos/200',
+            'profile_image_path' => 'https://picsum.photos/id/'.rand(1,100).'/200',
             'postal_code' => $this->faker->postcode(),
             'address' => $this->faker->address(),
             'building' => $this->faker->secondaryAddress(),

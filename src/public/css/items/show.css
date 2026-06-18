@@ -1,0 +1,197 @@
+.container {
+    max-width: 1300px;
+    width: 100%;
+    margin: 50px auto;
+}
+
+.detail__flex {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.detail__left {
+    width: 50%;
+}
+
+.detail__image {
+    max-width: 500px;
+    margin: 50px auto 0 auto;
+    border-radius: 10px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+.detail__right {
+    width: 50%;
+}
+
+.detail__item-name {
+    font-size: 2.5rem;
+    margin-bottom: 0;
+}
+
+.detail__brand-name {
+    font-size: 0.85rem;
+}
+
+.detail__price-yen {
+    font-size: 1.4rem;
+    font-family: "Noto Sans", sans-serif;
+}
+
+.detail__price {
+    font-size: 2rem;
+    margin: 10px 0;
+    font-family: "Noto Sans", sans-serif;
+}
+
+.detail__price-tax {
+    font-size: 1.2rem;
+    margin-left: 6px;
+}
+
+.detail__icon {
+    display: flex;
+    justify-content: flex-start;
+    gap: 50px;
+    align-items: center;
+}
+
+.detail__icon-button {
+    background-color: transparent;
+    border: none;
+}
+
+.detail__icon-heart {
+    width: 30px;
+}
+
+.detail__icon-speech {
+    width: 27px;
+    margin-bottom: 10px;
+}
+
+.detail__count {
+    text-align: center;
+    font-size: 0.85rem;
+    margin-top: 3px;
+}
+
+.detail__order-button {
+    display: block;
+    width: 80%;
+    background: #ff5555;
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: bold;
+    border-radius: 5px;
+    text-align: center;
+    padding: 8px 20px;
+    margin: 20px 0;
+}
+
+.detail__description-section {
+    margin: 30px 0;
+}
+
+.detail__title {
+    margin: 20px 0;
+}
+
+.detail__description-box {
+    margin: 30px 0;
+}
+
+.detail__sub-title {
+    font-size: 0.96rem;
+}
+
+.detail__category,
+.detail__condition {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.detail__category {
+    gap: 30px;
+}
+
+.detail__condition {
+    gap: 30px;
+}
+
+.category__item {
+    background: #d9d9d9;
+    border-radius: 30px;
+    padding: 5px 20px;
+}
+
+.detail__comment {
+    margin: 30px 0;
+}
+
+.detail__comment-title {
+    font-size: 1.64rem;
+    color: #5f5f5f;
+}
+
+.comment__item {
+    margin-bottom: 30px;
+}
+
+.comment__user {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    align-items: center;
+    margin: 20px 0 10px 0;
+}
+
+.comment__user-image {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+.comment__user-name {
+    font-weight: bold;
+}
+
+.comment__text {
+    width: 80%;
+    background: #e5e5e5;
+    border-radius: 5px;
+    padding: 16px 10px;
+}
+
+.add-comment__form {
+    margin-top: 5px;
+}
+
+.add-comment__area {
+    border: 1px solid #5f5f5f;
+    border-radius: 5px;
+    padding: 10px;
+    width: 80%;
+}
+
+.add-comment__submit {
+    display: block;
+    width: 80%;
+    background: #ff5555;
+    border-radius: 5px;
+    color: #fff;
+    border: none;
+    margin: 30px 0;
+    padding: 10px 0;
+    font-size: 1.12rem;
+    font-weight: bold;
+}
+
+.error-messages {
+    color: #ff5555;
+    font-size: 0.85rem;
+}

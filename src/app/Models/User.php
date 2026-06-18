@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Str; 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use App\Models\Comment;
-
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -27,7 +26,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'postal_code',
         'address',
         'building',
-        'profile_completed_at',
+        'last_login_at',
 
     ];
 
@@ -48,7 +47,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'profile_completed_at' => 'datetime',
+        'last_login_at' => 'datetime',
     ];
 
     public function comments()
@@ -56,8 +55,23 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Comment::class);
     }
 
-    public function orders()
+    public function purchases()
     {
-        return $this->hasMany(Order::class);
+        return $this->hasMany(Purchase::class);
     }
+
+    public function getProfileImagePathAttribute($value)
+    {
+    if (!$value) {
+        return asset('images/no_image.png');
+    }
+
+    if (Str::startsWith($value, 'http')) {
+        return $value;
+    }
+
+    return asset('storage/' . $value);
 }
+
+}
+

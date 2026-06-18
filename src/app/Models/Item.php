@@ -21,6 +21,7 @@ class Item extends Model
 
     public function categories()
     {
+        
         return $this->belongsToMany(Category::class,'item_categories');
     }
 
@@ -39,9 +40,9 @@ class Item extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function order()
+    public function purchase()
     {
-        return $this->hasOne(Order::class);
+        return $this->hasOne(Purchase::class);
     }
 
 }

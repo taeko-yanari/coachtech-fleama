@@ -34,7 +34,7 @@ class UserFactory extends Factory
             'address' => $this->faker->address(),
             'building' => $this->faker->secondaryAddress(),
             'remember_token' => Str::random(10),
-            'profile_completed_at' => now(),
+            'last_login_at' => now(),
         ];
     }
 

@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('postal_code', 10)->nullable();
             $table->string('address', 255)->nullable();
             $table->string('building', 255)->nullable();
-            $table->timestamp('profile_completed_at')->nullable();
+            $table->timestamp('last_login_at')->nullable();
             $table->timestamps();
         });
     }

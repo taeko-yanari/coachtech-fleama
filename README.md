@@ -46,7 +46,7 @@ MYSQL_USER=laravel_user
 MYSQL_PASSWORD=laravel_pass
 ```
 
-### 2. Laravel 用 `.env` を作成
+### 3. Laravel 用 `.env` を作成
 
 ```bash
 cp src/.env.example src/.env
@@ -72,8 +72,7 @@ STRIPE_SECRET=sk_test_xxxxxxxxxxxxxxxx
 STRIPE_WEBHOOK_SECRET=whsec_xxxxxxxxxxxxxxxx
 ```
 
-Stripeのテスト用APIキーは https://dashboard.stripe.com/test/apikeys から無料で取得できます。
-取得したキーを `.env` の STRIPE_KEY / STRIPE_SECRET に設定してください。
+キーは要件シートの基本設計書タブ(生徒様入力用)に記載しています。
 
 ### 4. Docker コンテナ起動
 
@@ -117,7 +116,7 @@ php artisan storage:link
 stripe login
 
 # Webhookイベントをローカルに転送
-stripe listen --forward-to localhost/stripe/webhook
+stripe listen --forward-to localhost/webhook/stripe
 ```
 
 コマンド実行時に表示される `whsec_...` を `.env` の `STRIPE_WEBHOOK_SECRET` に設定してください。
